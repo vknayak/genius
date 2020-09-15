@@ -27,11 +27,6 @@ class Header extends Component {
         <AppBar position="static">
           <Toolbar>
             <Box className={classes.logoContainer}>
-              {/* <img
-                src={LagibetLogo}
-                className={classes.logoImg}
-                alt="Lagibet Logo"
-              /> */}
               <Box className={classes.lagibetServiceNameContainer}>
                 <Typography variant="h6" style={{ fontWeight: 100 }}>
                   genius
@@ -40,7 +35,7 @@ class Header extends Component {
             </Box>
             <Box>
               <Typography variant="h6" style={{ fontWeight: 100 }}>
-                {/* {user} */} hi
+                hi
               </Typography>
             </Box>
           </Toolbar>
