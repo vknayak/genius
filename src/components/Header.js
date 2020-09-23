@@ -29,13 +29,13 @@ class Header extends Component {
             <Box className={classes.logoContainer}>
               <Box className={classes.lagibetServiceNameContainer}>
                 <Typography variant="h6" style={{ fontWeight: 100 }}>
-                  genius
+                  Genius
                 </Typography>
               </Box>
             </Box>
             <Box>
               <Typography variant="h6" style={{ fontWeight: 100 }}>
-                hi
+                User
               </Typography>
             </Box>
           </Toolbar>
