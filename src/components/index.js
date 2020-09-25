@@ -3,6 +3,10 @@ import { withStyles } from "@material-ui/core";
 import Header from "./Header";
 import FormBuilder from "./FormBuilder";
 import { getFormStructure } from "./formData";
+import {
+  ComposedChart,LabelList, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
+  Legend,
+} from 'recharts';
 var axios = require('axios');
 const JSONToCSV=require("json2csv")
 const fs=require("fs")
@@ -105,13 +109,13 @@ const FormComponent = () => {
           if (SgS.slice(0, 2) === Sg) {
             dict__["section"] = SgS.slice(0, 2);
             if (SgS.slice(2) === "m"){
-              dict__["Maths"] = Obj[`${SgS}`]/60000;
+              dict__["Maths"] = Math.ceil(Obj[`${SgS}`]/60000);
             }
             if (SgS.slice(2) === "s"){
-              dict__["Science"] = Obj[`${SgS}`]/60000;
+              dict__["Science"] = Math.ceil(Obj[`${SgS}`]/60000);
             }
             if (SgS.slice(2) === "eg"){
-              dict__["English"] = Obj[`${SgS}`]/60000;
+              dict__["English"] = Math.ceil(Obj[`${SgS}`]/60000);
             } 
           }
         }
@@ -133,6 +137,25 @@ const FormComponent = () => {
     <React.Fragment>
       <Header />
       <FormBuilder structure={getFormStructure()} onSubmit={onSubmit} />
+
+      { totalData && <ComposedChart
+        width={500}
+        height={400}
+        data={totalData}
+        margin={{
+          top: 20, right: 80, bottom: 20, left: 20,
+        }}
+      >
+        <CartesianGrid stroke="#f5f5f5" />
+        <XAxis dataKey="section" label={{ value: 'Subject', position: 'insideBottomRight', offset: 0 }} />
+        <YAxis label={{ value: 'time taught in min', angle: -90, position: 'insideLeft' }} />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="English" barSize={20} fill="#413ea0" >
+        <LabelList dataKey="English" position="top"   /> </Bar>
+        <Bar dataKey="Maths" barSize={20} fill="#8884d8"><LabelList dataKey="Maths" position="top"  /></Bar>
+        <Bar dataKey="Science" barSize={20} fill="#ff7300"><LabelList dataKey="Science" position="top" /></Bar>
+      </ComposedChart>}
     </React.Fragment>
   );
 };
